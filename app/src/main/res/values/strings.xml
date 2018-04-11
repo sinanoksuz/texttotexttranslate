@@ -1,10 +1,27 @@
 <resources>
     <string name="app_name">text to text translate</string>
-    <string name="textview">Sonuç</string>
-    <string name="button">Button</string>
-    <string name="name">merhaba</string>
-    <string name="textview2">Original</string>
-    <string name="textview23">TextView3</string>
-    <string name="name2">Name2</string>
-    <string name="textview4">TextView4</string>
+
+    <string name="edittext">edittext</string>
+    <string name="textview">TextView</string>
+    <string name="clearbut">clearbut</string>
+    <string name="favourite">favourite</string>
+    <string name="speaker">speaker</string>
+    <string name="speaker2">speaker2</string>
+    <string name="exchange">exchange</string>
+    <string name="spinner">Turkish</string>
+        <string-array name="spinner_array">
+            <item>Turkish</item>
+            <item>English</item>
+            <item>French</item>
+            <item>Spanish</item>
+
+        </string-array>
+
+        <string-array name="spinner_array2">
+            <item>English</item>
+            <item>Turkish</item>
+            <item>French</item>
+            <item>Spanish</item>
+            </string-array>
+
 </resources>
