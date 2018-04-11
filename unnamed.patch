@@ -1,0 +1,18 @@
+Index: MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- MainActivity.java	(revision fd3c2b81db41d07b7295290fba1f146c4e78d8bd)
++++ MainActivity.java	(revision )
+@@ -15,10 +15,6 @@
+ import static com.example.sinan.texttotexttranslate.MainActivity.txtTranslatedText;
+ 
+ 
+-/*
+-import io.github.firemaples.language.Language;
+-import io.github.firemaples.translate.Translate;
+-*/
+ 
+ 
+ public class MainActivity extends AppCompatActivity {
