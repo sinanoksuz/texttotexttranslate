@@ -10,7 +10,7 @@
     <string name="exchange">exchange</string>
     <string name="spinner">Turkish</string>
         <string-array name="spinner_array">
-            <item>Turkish</item>
+            <item >Turkish</item>
             <item>English</item>
             <item>French</item>
             <item>Spanish</item>
