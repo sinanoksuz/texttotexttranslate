@@ -49,24 +49,27 @@
         android:layout_marginTop="8dp"
         android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"
         android:contentDescription="@string/clearbut"
+        android:onClick="clear"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/places_ic_clear"
-        android:layout_marginLeft="289dp" />
+        app:srcCompat="@drawable/places_ic_clear" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
         android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"
         android:contentDescription="@string/favourite"
+        android:onClick="favourite"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/imageButton3"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/favourite" />
 
@@ -79,12 +82,13 @@
         android:layout_marginTop="8dp"
         android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"
         android:contentDescription="@string/speaker"
+        android:onClick="speech1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/quantum_ic_volume_up_grey600_36"
-        android:layout_marginRight="5dp" />
+        app:srcCompat="@drawable/quantum_ic_volume_up_grey600_36" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -93,12 +97,13 @@
         android:layout_marginEnd="25dp"
         android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"
         android:contentDescription="@string/speaker2"
+        android:onClick="speech2"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton5"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:srcCompat="@drawable/quantum_ic_volume_up_grey600_36"
-        android:layout_marginRight="25dp" />
+        app:srcCompat="@drawable/quantum_ic_volume_up_grey600_36" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -119,14 +124,14 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:entries="@array/spinner_array"
-        android:layout_width="91dp"
-        android:layout_height="28dp"
+        android:layout_width="121dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="1dp"
         android:layout_marginEnd="131dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:entries="@array/spinner_array"
 
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
@@ -134,22 +139,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginRight="131dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="101dp"
-        android:entries="@array/spinner_array"
-        android:layout_height="27dp"
+        android:layout_width="121dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="1dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="49dp"
+        android:entries="@array/spinner_array"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/imageButton5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="1.0" android:layout_marginStart="16dp"
-        android:layout_marginRight="24dp" />
+        app:layout_constraintVertical_bias="0.923" android:layout_marginStart="16dp" />
 </android.support.constraint.ConstraintLayout>

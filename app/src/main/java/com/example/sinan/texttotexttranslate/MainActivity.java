@@ -1,16 +1,19 @@
 package com.example.sinan.texttotexttranslate;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity
 {
     TextView translate;
     EditText origintxt;
-    ImageButton imgg;
+    ImageButton clear,exchange,speech,favourite,speech2;
     Spinner spinner,spinner2;
     String from,to;
     @Override
@@ -38,62 +41,116 @@ public class MainActivity extends AppCompatActivity
         spinner2=findViewById(R.id.spinner2);
         String s=spinner.getSelectedItem().toString();
         String s1=spinner2.getSelectedItem().toString();
+        clear =findViewById(R.id.imageButton);
+        favourite=findViewById(R.id.imageButton2);
+        speech=findViewById(R.id.imageButton3);
+        speech2=findViewById(R.id.imageButton4);
+        exchange=findViewById(R.id.imageButton5);
 
             //selected itemlere kısalatmalarını yaptık
-            switch (s) {
-                case "English":
-                     from ="en";
-                case "Turkish":
-                    from="tr";
-                case "Spanish":
-                    from="sp";
-                case "French":
-                    from="fr";
-            }
-            switch (s1) {
-                case "English":
-                    to ="en";
-                case "Turkish":
-                    to="tr";
-                case "Spanish":
-                    to="sp";
-                case "French":
-                    to="fr";
-            }
+        switch (s) {
+            case "English":
+                from ="en";
+            case "Turkish":
+                from="tr";
+            case "Spanish":
+                from="sp";
+            case "French":
+                from="fr";
+        }
+        switch (s1) {
+            case "English":
+                to ="en";
+            case "Turkish":
+                to="tr";
+            case "Spanish":
+                to="sp";
+            case "French":
+                to="fr";
+        }
 
         final String[] textOrig = new String[1];
-        SharedPreferences p1= PreferenceManager.getDefaultSharedPreferences((getApplicationContext()));
-        SharedPreferences.Editor editor=p1.edit();
-        editor.putString("from",from);
-        editor.putString("to",to);
 
-        origintxt.setOnKeyListener(new View.OnKeyListener()
-            //keyboardda entera basınca yada dpad center yapınca çevirmeyi yapması için
-
-        {       @Override
-                public boolean onKey(View view, int keyCode, KeyEvent Event) {
-
-                    if(Event.getAction()==KeyEvent.ACTION_DOWN) {
-                    switch(keyCode){
+        origintxt.setOnKeyListener( new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent Event)
+            {
+               if(Event.getAction()==KeyEvent.ACTION_DOWN)
+                    {
+                    switch(keyCode)
+                    {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             textOrig[0] = origintxt.getText().toString();
-
                             new TransAsynTask().execute(textOrig[0]);
                             return true;
                             default:
                                 break;
                     }
                 }
-
-
                 return false ;
-        }
+            }
 
+        });
+        origintxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                clear.setVisibility(View.VISIBLE);
+                favourite.setVisibility(View.VISIBLE);
+                speech.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        translate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                speech2.setVisibility(View.VISIBLE);
+            }
         });
 
   }
+    public void favourite (View view){
+        SharedPreferences share= this.getSharedPreferences(String.valueOf(getApplicationContext()),Context.MODE_PRIVATE);
+        String Gets=origintxt.getText().toString();
+        String Getstrans=translate.getText().toString();
+        share.edit().putString(Gets,Getstrans).apply();
+        Toast.makeText(getApplicationContext(),"Eklendi",Toast.LENGTH_SHORT).show();
+      //  Intent ıntent=new Intent(getApplicationContext(),MainActivity.class);
+        //ıntent.putExtra(Gets,Getstrans);
+       // startActivity(ıntent);  Not diğer sayfaya favouritemi taşıdım Shared preferencesı istersem orada da yapabilirim
+        //ancak bu intent kodunu uraya yerleştiririsem diğer sayfaya kednsisi geçiş ypacaaktır
+        // ayarlar menusunde favourite kısmıne bunu koymamız gerekli
 
+
+    }
+    public void clear (View view){
+        origintxt.setText("");
+    }
+    public void speech1 (View view){
+
+    }
+    public void speech2 (View view){
+
+    }
 
     public String getTranslation(String translatedTextStr) {
 
@@ -108,9 +165,11 @@ public class MainActivity extends AppCompatActivity
 
             String appId = URLEncoder.encode("Bearer " + token, "UTF-8");
             String text = URLEncoder.encode(translatedTextStr, "UTF-8");
-            SharedPreferences p1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            String from =p1.getString("from","N/A");
-            String to =p1.getString("to","N/A");
+           // SharedPreferences p1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+           // String from =p1.getString("from","tr");
+           // String to =p1.getString("to","tr");
+            String from="tr";
+            String to="en";
 
             String translatorTextApiUrl = String.format("https://api.microsofttranslator.com/v2/http.svc/GetTranslations?appid=%s&text=%s&from=%s&to=%s&maxTranslations=5", appId, text, from, to);
             HttpsURLConnection translateConn = (HttpsURLConnection) new URL(translatorTextApiUrl).openConnection();
@@ -182,7 +241,7 @@ public class MainActivity extends AppCompatActivity
     private class TransAsynTask extends AsyncTask<String, Void, String>{
     @Override
     protected  void onPreExecute(){
-        String S="...";
+
         translate.setText("...");
     }
         @Override

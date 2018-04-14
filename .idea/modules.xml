@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TransLila.iml" filepath="$PROJECT_DIR$/TransLila.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JTranslate.iml" filepath="$PROJECT_DIR$/JTranslate.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
